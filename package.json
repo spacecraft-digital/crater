@@ -1,0 +1,16 @@
+{
+  "name": "spatabase-customers",
+  "version": "1.0.0",
+  "description": "Spacecraft database of Customers and their Projects",
+  "private": true,
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.hq.jadu.net/spacecraft/spatabase-customers"
+  },
+  "author": "Matt Dolan <matt.dolan@spacecraft.co.uk>",
+  "license": "ISC"
+}
