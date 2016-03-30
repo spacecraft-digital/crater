@@ -5,6 +5,7 @@ projectSchema = require './Project'
 baseSchema = require './_Base'
 SubTargetMatch = require '../src/SubTargetMatch'
 fuzzy = require 'fuzzy'
+NaturalLanguageObjectReference = require '../src/NaturalLanguageObjectReference'
 
 customerSchema = mongoose.Schema
     # Full name of the Customer
@@ -151,6 +152,12 @@ customerSchema.statics.getAllNameRegexString = (forceReload) ->
             console.log "Found #{names.length} customer names/aliases — storing regex" if '--debug' in process.argv
             customerSchema.statics.allNameRegexString = "[\"'“‘]?(#{names.join('|')})[\"'”’]?"
             resolve customerSchema.statics.allNameRegexString
+
+# given a natural(ish) language string referring to a piece of customer data,
+# returns a SubTargetMatch referencing the desired object
+customerSchema.statics.resolveNaturalLanguage = (query) ->
+    ref = new NaturalLanguageObjectReference query
+    ref.findTarget()
 
 # load the 'all name regex string' on connect
 mongoose.connection.once 'open', (callback) -> customerSchema.statics.getAllNameRegexString(true)

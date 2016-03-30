@@ -1,7 +1,6 @@
 RSVP = require 'rsvp'
 mongoose = require 'mongoose'
 regexEscape = require 'escape-string-regexp'
-SubTargetMatch = require '../src/SubTargetMatch'
 
 customerSchema = require './Customer'
 repositorySchema = require './Repository'

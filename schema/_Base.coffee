@@ -1,6 +1,7 @@
 
-stringUtils = require '../src/utils/string'
 SubTargetMatch = require '../src/SubTargetMatch'
+
+uncamelize = require 'uncamelize'
 
 ####
 # Static and instance methods to be used in all Schemas
@@ -34,7 +35,7 @@ _Base =
                 # allow dashes and spaces to be used interchangeably
                 makeFlexibleWordDividers = (s) -> s.replace(/[-_ ]/g,'[ \\-_]*')
 
-                uncamelizedPropertyRegex = stringUtils.uncamelize(property)
+                uncamelizedPropertyRegex = uncamelize property
                 parts.push makeFlexibleWordDividers(uncamelizedPropertyRegex)
 
             if typeof @[property] is 'object' and @[property]?.getNameRegexString
