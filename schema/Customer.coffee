@@ -156,7 +156,7 @@ customerSchema.statics.getAllNameRegexString = (forceReload) ->
 # given a natural(ish) language string referring to a piece of customer data,
 # returns a SubTargetMatch referencing the desired object
 customerSchema.statics.resolveNaturalLanguage = (query) ->
-    ref = new NaturalLanguageObjectReference query
+    ref = new NaturalLanguageObjectReference @, query
     ref.findTarget()
 
 # load the 'all name regex string' on connect

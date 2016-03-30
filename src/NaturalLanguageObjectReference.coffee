@@ -1,6 +1,4 @@
 RSVP = require 'rsvp'
-mongoose = require '../database_init'
-Customer = mongoose.model 'Customer'
 SubTargetMatch = require './SubTargetMatch'
 
 class NaturalLanguageObjectReference
@@ -11,7 +9,7 @@ class NaturalLanguageObjectReference
     RESULT_UNKNOWN: 'unknown'
     RESULT_PRESUMED: 'presumed'
 
-    constructor: (@query) ->
+    constructor: (@Customer, @query) ->
 
     # Attempts to identify the object referred to by the query string
     #
@@ -111,7 +109,7 @@ class NaturalLanguageObjectReference
     # @return Promise
     extractCustomerName: (query) ->
         return new RSVP.Promise (resolve, reject) =>
-            Customer.getAllNameRegexString()
+            @Customer.getAllNameRegexString()
             .then (customerRegexString) =>
                 regexs = [
                     new RegExp("^#{customerRegexString}\\b\\s*", 'i'),
