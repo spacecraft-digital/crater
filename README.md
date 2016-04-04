@@ -1,2 +1,2 @@
-A Mongoose database of Spacecraft customers and their projects
+A Mongoose database of Spacecraft technical data: customers, projects, servers and the like.
 
