@@ -120,7 +120,7 @@ class NaturalLanguageObjectReference
                         m = query.match regex
                         if m
                             query = query.replace regex, ''
-                            return Customer.findOneByName m[1]
+                            return @Customer.findOneByName m[1]
                                 .then (customer) ->
                                     return reject "Sorry, I couldn't figure out which customer `#{m[1]}` is" unless customer
                                     return resolve new SubTargetMatch
