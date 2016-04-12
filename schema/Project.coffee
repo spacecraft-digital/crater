@@ -1,4 +1,4 @@
-RSVP = require 'rsvp'
+Promise = require 'bluebird'
 mongoose = require 'mongoose'
 regexEscape = require 'escape-string-regexp'
 
@@ -84,7 +84,7 @@ projectSchema.methods.getNameRegexString = ->
 ###
 projectSchema.methods.getJiraMappingId = (jira) ->
     throw "getJiraMappingId requires a Jira instance as the first parameter" unless jira?.loadReportingCustomerValues
-    return new RSVP.Promise (resolve, reject) =>
+    return new Promise (resolve, reject) =>
         return resolve @_mappingId_jira if @_mappingId_jira != null
         # import values from Jira and try again
         jira.loadReportingCustomerValues().then @getJiraMappingId jira

@@ -1,4 +1,4 @@
-RSVP = require 'rsvp'
+Promise = require 'bluebird'
 SubTargetMatch = require './SubTargetMatch'
 
 class NaturalLanguageObjectReference
@@ -22,7 +22,7 @@ class NaturalLanguageObjectReference
     #                              the values are string names of the target they match.
     #                              Only returned with an UNKNOWN outcome
     findTarget: ->
-        return new RSVP.Promise (resolve, reject) =>
+        return new Promise (resolve, reject) =>
             # The base objects are Customers, so look that up in the database first
             @extractCustomerName(@query)
             .then (match) =>
@@ -108,7 +108,7 @@ class NaturalLanguageObjectReference
     # @param string query
     # @return Promise
     extractCustomerName: (query) ->
-        return new RSVP.Promise (resolve, reject) =>
+        return new Promise (resolve, reject) =>
             @Customer.getAllNameRegexString()
             .then (customerRegexString) =>
                 regexs = [

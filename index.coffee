@@ -1,9 +1,9 @@
 mongoose = require 'mongoose'
-RSVP = require 'rsvp'
+Promise = require 'bluebird'
 colors = require 'colors'
 
 module.exports = (url = 'mongodb://localhost/customers') ->
-    return new RSVP.Promise (resolve, reject) ->
+    return new Promise (resolve, reject) ->
         if mongoose.connection.readyState > 0
             return resolve mongoose.connection
         else

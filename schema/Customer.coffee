@@ -1,5 +1,5 @@
 mongoose = require 'mongoose'
-RSVP = require 'rsvp'
+Promise = require 'bluebird'
 regexEscape = require 'escape-string-regexp'
 projectSchema = require './Project'
 baseSchema = require './_Base'
@@ -101,7 +101,7 @@ customerSchema.statics.findBySimplifiedName = (name, property = 'name') ->
 customerSchema.statics.fuzzyFindOneByName = (name) ->
     # remove 's
     name = name.replace /['’]s?$/i, ''
-    return new RSVP.Promise (resolve, reject) =>
+    return new Promise (resolve, reject) =>
         @find().then (customers) ->
             results = fuzzy.filter name, customers, extract: (customer) -> "#{customer.name} #{customer.aliases.join ' '}"
             return resolve null unless results.length
@@ -113,7 +113,7 @@ customerSchema.statics.fuzzyFindOneByName = (name) ->
             resolve bestMatch.original
 
 customerSchema.statics.getAllNames = (forceReload) ->
-    new RSVP.Promise (resolve, reject) ->
+    new Promise (resolve, reject) ->
         if not forceReload and customerSchema.statics.allNames
             return resolve customerSchema.statics.allNames
 
@@ -144,7 +144,7 @@ customerSchema.statics.getAllNames = (forceReload) ->
 
 # returns a Promise which resolves to a regular expression containing all customer names and aliases
 customerSchema.statics.getAllNameRegexString = (forceReload) ->
-    new RSVP.Promise (resolve, reject) ->
+    new Promise (resolve, reject) ->
         if not forceReload and customerSchema.statics.allNameRegexString
             return resolve customerSchema.statics.allNameRegexString
 
