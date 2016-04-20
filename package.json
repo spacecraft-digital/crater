@@ -20,5 +20,8 @@
     "fuzzy": "^0.1.1",
     "mongoose": "^4.1.3",
     "uncamelize": "^1.0.2"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3"
   }
 }
