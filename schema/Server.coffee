@@ -5,11 +5,8 @@ serverSchema = mongoose.Schema
     role: String
     host: String
 
-(require './_Base').applyTo serverSchema
-
-serverSchema.methods.getName = (forceNoun = false) -> if forceNoun then "#{@role} server" else @role
-serverSchema.methods.getNameProperty = -> 'role'
-
-serverSchema.methods.getNameRegexString = -> return "#{@role}(?: server)?"
+# apply methods
+require('./methods/instance/Base') serverSchema
+require('./methods/instance/Server') serverSchema
 
 module.exports = serverSchema

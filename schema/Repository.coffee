@@ -36,28 +36,6 @@ repositorySchema = mongoose.Schema
         # path in Gitlab
         codename: String
 
-(require './_Base').applyTo repositorySchema
-
-repositorySchema.methods.toObjectAtDepth = (depth) ->
-    if depth is 0
-        return @toObject()
-    else
-        return {
-            description: @description
-            sshUrl: @sshUrl
-            webUrl: @webUrl
-            mergeRequestsEnabled: @mergeRequestsEnabled
-            wikiEnabled: @wikiEnabled
-            createdDate: @createdDate
-            lastActivityDate: @lastActivityDate
-            namespace: @namespace.name
-        }
-
-repositorySchema.methods.getName = -> "#{@host} repo"
-
-# allow names to be aliased
-repositorySchema.methods.getNameRegexString = ->
-    return "#{@host}(?: repo(sitory)?)?"
 
 repositorySchema.virtual('host')
     .get ->
@@ -72,15 +50,15 @@ repositorySchema.virtual('host')
 # alias url -> webUrl
 repositorySchema.virtual('url', _jiri_aliasTarget: 'webUrl')
     .get -> @webUrl
-    .set (value) ->
-        @webUrl = value
-        @markModified 'webUrl'
+    .set (value) -> @webUrl = value
 
-# alias url -> webUrl
+# alias cloneUrl -> sshUrl
 repositorySchema.virtual('cloneUrl', _jiri_aliasTarget: 'sshUrl')
     .get -> @sshUrl
-    .set (value) ->
-        @sshUrl = value
-        @markModified 'sshUrl'
+    .set (value) -> @sshUrl = value
+
+# apply methods
+require('./methods/instance/Base') repositorySchema
+require('./methods/instance/Repository') repositorySchema
 
 module.exports = repositorySchema

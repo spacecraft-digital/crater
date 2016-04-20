@@ -4,6 +4,7 @@ moduleSchema = mongoose.Schema
     name: String
     version: String
 
-(require './_Base').applyTo moduleSchema
+# apply methods
+require('./methods/instance/Base') moduleSchema
 
 module.exports = moduleSchema
