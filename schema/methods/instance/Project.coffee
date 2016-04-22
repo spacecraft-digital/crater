@@ -5,7 +5,7 @@ SubTargetMatch = require '../../../src/SubTargetMatch'
 
 methods =
     getName: (forceNoun = false) ->
-        if @name is 'default' and @isDefault
+        if @name is 'default' and @defaultProject
             return 'main project'
         else if forceNoun
             return "#{@name} project"
@@ -32,7 +32,7 @@ methods =
     # allow names to be aliased
     getNameRegexString: ->
         names = [regexEscape(@name)]
-        if @isDefault
+        if @defaultProject
             names.push 'main', 'website', 'main website'
 
         return "(#{names.join('|')})"

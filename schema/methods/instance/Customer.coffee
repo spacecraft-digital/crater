@@ -25,7 +25,7 @@ methods =
         switch property
             # special case for default project
             when 'projects'
-                project = p for p in @projects when p.isDefault
+                project = p for p in @projects when p.defaultProject
                 # return first project if 'default' one not found
                 return project or @projects[0]
             else

@@ -8,8 +8,8 @@ projectSchema = mongoose.Schema
     _creator:
         type: mongoose.Schema.Types.ObjectId
         ref: customerSchema
-    isDefault: Boolean
     name: type: String, crater: suggestions: true
+    defaultProject: Boolean
     repositories: [repositorySchema]
     stages: [stageSchema]
     notes: String
