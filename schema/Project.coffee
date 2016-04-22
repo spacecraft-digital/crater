@@ -12,7 +12,7 @@ projectSchema = mongoose.Schema
     defaultProject: Boolean
     repositories: [repositorySchema]
     stages: [stageSchema]
-    notes: String
+    notes: type: String, crater: multiLine: true
     state: String # project, live, archived
     hostedByJadu: Boolean
     platform: type: String, crater: suggestions: true # LAMP, WISP, WINS
