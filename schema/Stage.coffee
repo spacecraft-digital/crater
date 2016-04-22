@@ -4,7 +4,7 @@ serverSchema = require './Server'
 moduleSchema = require './Module'
 
 stageSchema = mongoose.Schema
-    name: String
+    name: type: String, crater: suggestions: true
     servers: [serverSchema]
     urls: [String]
     modules: [moduleSchema]

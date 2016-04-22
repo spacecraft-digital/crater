@@ -8,17 +8,17 @@ projectSchema = mongoose.Schema
     _creator:
         type: mongoose.Schema.Types.ObjectId
         ref: customerSchema
-    name: String
     isDefault: Boolean
+    name: type: String, crater: suggestions: true
     repositories: [repositorySchema]
     stages: [stageSchema]
     notes: String
     state: String # project, live, archived
     hostedByJadu: Boolean
-    platform: String # LAMP, WISP, WINS
+    platform: type: String, crater: suggestions: true # LAMP, WISP, WINS
     goLiveDate: Date
     slackChannel: String
-    projectManager: String
+    projectManager: type: String, crater: suggestions: true
 
     # exact IDs/names used in different data sources
     # These are used when re-importing data, to match to

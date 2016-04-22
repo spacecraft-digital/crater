@@ -1,8 +1,7 @@
 mongoose = require 'mongoose'
-regexEscape = require 'escape-string-regexp'
 
 serverSchema = mongoose.Schema
-    role: String
+    role: type: String, crater: suggestions: true
     host: String
 
 # apply methods

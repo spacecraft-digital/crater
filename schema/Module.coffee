@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 
 moduleSchema = mongoose.Schema
-    name: String
+    name: type: String, crater: suggestions: true
     version: String
 
 # apply methods
