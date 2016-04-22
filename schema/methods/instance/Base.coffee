@@ -85,10 +85,6 @@ methods =
     # All Documents have a getName function, which gives a short text representation of the document
     getName: -> @name
 
-    # returns the property that is used within getName
-    # If it's not 'name', override this
-    getNameProperty: -> 'name'
-
 
 #######################################
 

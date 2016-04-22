@@ -3,9 +3,6 @@ methods =
     getName: (forceNoun = false) ->
         if forceNoun then "#{@role} server" else @role
 
-    getNameProperty: ->
-        'role'
-
     getNameRegexString: ->
         return "#{@role}(?: server)?"
 
