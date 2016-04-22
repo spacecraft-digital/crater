@@ -57,6 +57,7 @@ projectSchema.virtual('pm', _jiri_aliasTarget: 'projectManager')
         @markModified 'projectManager'
 
 # apply methods
+require('./methods/static/Base') projectSchema
 require('./methods/instance/Base') projectSchema
 require('./methods/instance/Project') projectSchema
 

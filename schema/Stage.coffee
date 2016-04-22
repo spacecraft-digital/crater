@@ -13,8 +13,10 @@ stageSchema = mongoose.Schema
     accessMethod: String
 
 # apply methods
-require('./methods/instance/Base') serverSchema
-require('./methods/instance/Server') serverSchema
+require('./methods/static/Base') stageSchema
+require('./methods/instance/Base') stageSchema
+require('./methods/static/Stage') stageSchema
+require('./methods/instance/Stage') stageSchema
 
 stageSchema.virtual('url', _jiri_aliasTarget: 'urls')
     .get -> @urls[0]

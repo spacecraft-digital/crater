@@ -19,6 +19,7 @@ customerSchema.virtual('alias', _jiri_aliasTarget: 'aliases')
     .get -> @aliases
 
 # apply methods
+require('./methods/static/Base') customerSchema
 require('./methods/instance/Base') customerSchema
 require('./methods/static/Customer') customerSchema
 require('./methods/instance/Customer') customerSchema
