@@ -1,4 +1,4 @@
-SubTargetMatch = require '../../../src/SubTargetMatch'
+SubTargetMatch = require '../../../SubTargetMatch'
 uncamelize = require 'uncamelize'
 
 # Static and instance methods to be used in all Schemas

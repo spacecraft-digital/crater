@@ -15,7 +15,6 @@ stageSchema = mongoose.Schema
 # apply methods
 require('./methods/static/Base') stageSchema
 require('./methods/instance/Base') stageSchema
-require('./methods/static/Stage') stageSchema
 require('./methods/instance/Stage') stageSchema
 
 stageSchema.virtual('url', _jiri_aliasTarget: 'urls')

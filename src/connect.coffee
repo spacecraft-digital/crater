@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 Promise = require 'bluebird'
 colors = require 'colors'
+Crater = require './Crater'
 
 module.exports = (url = 'mongodb://localhost/customers') ->
     return new Promise (resolve, reject) ->
@@ -13,19 +14,7 @@ module.exports = (url = 'mongodb://localhost/customers') ->
 
             # avoid creating models twice
             unless mongoose.modelNames().length
-                customerSchema = require './schema/Customer'
-                projectSchema = require './schema/Project'
-                stageSchema = require './schema/Stage'
-                serverSchema = require './schema/Server'
-                moduleSchema = require './schema/Module'
-                repositorySchema = require './schema/Repository'
-
-                Customer = mongoose.model 'Customer', customerSchema
-                Project = mongoose.model 'Project', projectSchema
-                Stage = mongoose.model 'Stage', stageSchema
-                Server = mongoose.model 'Server', serverSchema
-                Module = mongoose.model 'Module', moduleSchema
-                Repository = mongoose.model 'Repository', repositorySchema
+                Crater.getModels()
 
             mongoose.connect(url).then -> resolve mongoose
 

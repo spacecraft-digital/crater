@@ -1,7 +1,7 @@
 Promise = require 'bluebird'
 projectSchema = require '../../Project'
 regexEscape = require 'escape-string-regexp'
-SubTargetMatch = require '../../../src/SubTargetMatch'
+SubTargetMatch = require '../../../SubTargetMatch'
 
 methods =
     getName: (forceNoun = false) ->

@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 regexEscape = require 'escape-string-regexp'
 Promise = require 'bluebird'
 fuzzy = require 'fuzzy'
-NaturalLanguageObjectReference = require '../../../src/NaturalLanguageObjectReference'
+NaturalLanguageObjectReference = require '../../../NaturalLanguageObjectReference'
 
 simplifyName = (name) ->
     name.replace /\b(council|city|town|university|college|london borough|borough|district|of|[^a-z]+)\b/gi, ''

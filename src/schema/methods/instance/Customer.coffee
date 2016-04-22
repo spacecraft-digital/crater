@@ -1,6 +1,6 @@
 projectSchema = require '../../Project'
 regexEscape = require 'escape-string-regexp'
-SubTargetMatch = require '../../../src/SubTargetMatch'
+SubTargetMatch = require '../../../SubTargetMatch'
 
 methods =
     getProject: (name = null) ->
