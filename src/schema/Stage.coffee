@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+extend = require 'lodash.assignin'
 
 serverSchema = require './Server'
 moduleSchema = require './Module'
@@ -13,9 +14,11 @@ stageSchema = mongoose.Schema
     accessMethod: String
 
 # apply methods
-require('./methods/static/Base') stageSchema
-require('./methods/instance/Base') stageSchema
-require('./methods/instance/Stage') stageSchema
+extend stageSchema.statics,
+    require('./methods/static/Base')
+extend stageSchema.methods,
+    require('./methods/instance/Base'),
+    require('./methods/instance/Stage')
 
 stageSchema.virtual('url', _jiri_aliasTarget: 'urls')
     .get -> @urls[0]

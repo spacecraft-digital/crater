@@ -2,7 +2,7 @@ SubTargetMatch = require '../../../SubTargetMatch'
 uncamelize = require 'uncamelize'
 
 # Static and instance methods to be used in all Schemas
-methods =
+module.exports =
     # returns a single result that can be considered the 'default' one of the set
     # In this standard implementation, this is just the first,
     # but in other schemas (e.g. Project), it may be marked in a different way
@@ -85,9 +85,3 @@ methods =
     # All Documents have a getName function, which gives a short text representation of the document
     getName: -> @name
 
-
-#######################################
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.methods[name] = func for name, func of methods

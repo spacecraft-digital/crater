@@ -13,7 +13,7 @@ simplifyName = (name) ->
 allNames = null
 allNameRegexString = null
 
-methods =
+module.exports =
     # Find by name, allowing a progressively looser match until at least one is found
     # Returns a single Customer or NULL
     findOneByName: (name) ->
@@ -124,21 +124,17 @@ methods =
 
     # returns a Promise which resolves to a regular expression containing all customer names and aliases
     getAllNameRegexString: (forceReload) ->
-        new Promise (resolve, reject) ->
+        new Promise (resolve, reject) =>
             if not forceReload and allNameRegexString
                 return resolve allNameRegexString
 
-            methods.getAllNames(forceReload).then (names) ->
+            @getAllNames(forceReload).then (names) ->
                 console.log "Found #{names.length} customer names/aliases — storing regex" if '--debug' in process.argv
                 allNameRegexString = "[\"'“‘]?(#{names.join('|')})[\"'”’]?"
-                resolve allNameRegexString
+                return allNameRegexString
 
     # given a natural(ish) language string referring to a piece of customer data,
     # returns a SubTargetMatch referencing the desired object
     resolveNaturalLanguage: (query) ->
         ref = new NaturalLanguageObjectReference @, query
         ref.findTarget()
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.statics[name] = func for name, func of methods

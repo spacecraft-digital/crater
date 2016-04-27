@@ -1,8 +1,9 @@
 projectSchema = require '../../Project'
 regexEscape = require 'escape-string-regexp'
 SubTargetMatch = require '../../../SubTargetMatch'
+BaseMethods = require './Base'
 
-methods =
+module.exports =
     getProject: (name = null) ->
         if name is null
             return @getDefault('projects')
@@ -39,7 +40,7 @@ methods =
     #   keywords the string found at the start of the query
     #   query    the updated query, with the match removed
     findSubtarget: (query) ->
-        o = @findSubtarget.call this, query
+        o = BaseMethods.findSubtarget.call this, query
         return o if o
 
         # no match on property or project name, so assume it's a property of the default project
@@ -52,7 +53,3 @@ methods =
                 query: query
 
         return false
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.methods[name] = func for name, func of methods

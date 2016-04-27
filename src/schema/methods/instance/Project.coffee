@@ -2,8 +2,9 @@ Promise = require 'bluebird'
 projectSchema = require '../../Project'
 regexEscape = require 'escape-string-regexp'
 SubTargetMatch = require '../../../SubTargetMatch'
+baseMethods = require './Base'
 
-methods =
+module.exports =
     getName: (forceNoun = false) ->
         if @name is 'default' and @defaultProject
             return 'main project'
@@ -27,7 +28,7 @@ methods =
     getDefault: (property) ->
         switch property
             when 'stages' then return @getStage 'production'
-            else return baseSchema.methods.getDefault.call this, property
+            else return baseMethods.getDefault.call this, property
 
     # allow names to be aliased
     getNameRegexString: ->
@@ -50,8 +51,3 @@ methods =
             return resolve @_mappingId_jira if @_mappingId_jira != null
             # import values from Jira and try again
             jira.loadReportingCustomerValues().then @getJiraMappingId jira
-
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.methods[name] = func for name, func of methods

@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+extend = require 'lodash.assignin'
 
 repositorySchema = mongoose.Schema
     id: Number
@@ -58,9 +59,11 @@ repositorySchema.virtual('cloneUrl', _jiri_aliasTarget: 'sshUrl')
     .set (value) -> @sshUrl = value
 
 # apply methods
-require('./methods/static/Base') repositorySchema
-require('./methods/instance/Base') repositorySchema
-require('./methods/static/Repository') repositorySchema
-require('./methods/instance/Repository') repositorySchema
+extend repositorySchema.statics,
+    require('./methods/static/Base'),
+    require('./methods/static/Repository')
+extend repositorySchema.methods,
+    require('./methods/instance/Base'),
+    require('./methods/instance/Repository')
 
 module.exports = repositorySchema

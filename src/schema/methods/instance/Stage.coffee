@@ -1,6 +1,6 @@
 regexEscape = require 'escape-string-regexp'
 
-methods =
+module.exports =
     getName: (forceNoun = false) ->
         switch @name.toLowerCase()
             when 'qa' then name = 'QA'
@@ -30,7 +30,3 @@ methods =
                 names.push 'u[\.\-]?a[\.\-]?t\.?'
 
         return "(#{names.join('|')})(?: (?:website|site|stage))?"
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.methods[name] = func for name, func of methods

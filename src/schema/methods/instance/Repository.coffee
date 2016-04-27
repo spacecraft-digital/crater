@@ -1,5 +1,5 @@
 
-methods =
+module.exports =
     toObjectAtDepth: (depth) ->
         if depth is 0
             return @toObject()
@@ -20,7 +20,3 @@ methods =
     # allow names to be aliased
     getNameRegexString: ->
         return "#{@host}(?: repo(sitory)?)?"
-
-module.exports = (schema) ->
-    # apply each method to schema
-    schema.methods[name] = func for name, func of methods

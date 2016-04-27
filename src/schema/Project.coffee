@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+extend = require 'lodash.assignin'
 
 customerSchema = require './Customer'
 repositorySchema = require './Repository'
@@ -57,8 +58,10 @@ projectSchema.virtual('pm', _jiri_aliasTarget: 'projectManager')
         @markModified 'projectManager'
 
 # apply methods
-require('./methods/static/Base') projectSchema
-require('./methods/instance/Base') projectSchema
-require('./methods/instance/Project') projectSchema
+extend projectSchema.statics,
+    require('./methods/static/Base')
+extend projectSchema.methods,
+    require('./methods/instance/Base'),
+    require('./methods/instance/Project')
 
 module.exports = projectSchema
