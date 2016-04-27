@@ -7,7 +7,7 @@ module.exports =
             when 'uat' then name = 'UAT'
             else name = @name.toLowerCase()
 
-        if forceNoun then "#{name} site" else name
+        if forceNoun then "#{name} stage" else name
 
     getServer: (role) ->
         regex = new RegExp "^#{role}$", "i"
