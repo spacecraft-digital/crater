@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 projectSchema = require './Project'
 extend = require 'lodash.assignin'
 
-customerSchema = mongoose.Schema
+customerSchema = mongoose.Schema {
     # Full name of the Customer
     name: String
     # Other names the customer may be known by
@@ -10,6 +10,10 @@ customerSchema = mongoose.Schema
     # A customer's site
     projects: [projectSchema]
     slackChannel: String
+    },
+    # metadata for Crater
+    crater:
+        name: 'Customer'
 
 ################################################
 

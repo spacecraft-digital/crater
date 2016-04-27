@@ -5,7 +5,7 @@ customerSchema = require './Customer'
 repositorySchema = require './Repository'
 stageSchema = require './Stage'
 
-projectSchema = mongoose.Schema
+projectSchema = mongoose.Schema {
     _creator:
         type: mongoose.Schema.Types.ObjectId
         ref: customerSchema
@@ -27,6 +27,10 @@ projectSchema = mongoose.Schema
     _mappingId_isoSpreadsheet: String
     _mappingId_goLivesSheet: String
     _mappingId_jira: String
+    },
+    # metadata for Crater
+    crater:
+        name: 'Project'
 
 
 # Virtuals

@@ -1,9 +1,13 @@
 mongoose = require 'mongoose'
 extend = require 'lodash.assignin'
 
-moduleSchema = mongoose.Schema
+moduleSchema = mongoose.Schema {
     name: type: String, crater: suggestions: true
     version: String
+    },
+    # metadata for Crater
+    crater:
+        name: 'Module'
 
 # apply methods
 extend moduleSchema.statics,

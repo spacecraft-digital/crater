@@ -4,7 +4,7 @@ extend = require 'lodash.assignin'
 serverSchema = require './Server'
 moduleSchema = require './Module'
 
-stageSchema = mongoose.Schema
+stageSchema = mongoose.Schema {
     name: type: String, crater: suggestions: true
     servers: [serverSchema]
     urls: [String]
@@ -12,6 +12,10 @@ stageSchema = mongoose.Schema
 
     # e.g. SSH, VPN, RDP
     accessMethod: String
+    },
+    # metadata for Crater
+    crater:
+        name: 'Stage'
 
 # apply methods
 extend stageSchema.statics,

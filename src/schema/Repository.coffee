@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 extend = require 'lodash.assignin'
 
-repositorySchema = mongoose.Schema
+repositorySchema = mongoose.Schema {
     id: Number
     name: String
     # path in Gitlab
@@ -36,6 +36,10 @@ repositorySchema = mongoose.Schema
         name: String
         # path in Gitlab
         codename: String
+    },
+    # metadata for Crater
+    crater:
+        name: 'Repository'
 
 
 repositorySchema.virtual('host')
