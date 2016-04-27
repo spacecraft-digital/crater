@@ -15,6 +15,8 @@ module.exports = (url = 'mongodb://localhost/customers') ->
             # avoid creating models twice
             unless mongoose.modelNames().length
                 Crater.getModels()
+                # load the 'all name regex string' on connect
+                mongoose.connection.once 'open', (callback) -> Crater.getSchema('Customer').statics.getAllNameRegexString(true)
 
             mongoose.connect(url).then -> resolve mongoose
 

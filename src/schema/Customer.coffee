@@ -24,8 +24,6 @@ customerSchema.virtual('alias', _jiri_aliasTarget: 'aliases')
     .get -> @aliases
 
 # apply methods
-# load the 'all name regex string' on connect
-mongoose.connection.once 'open', (callback) -> customerSchema.statics.getAllNameRegexString(true)
 extend customerSchema.statics,
     require('./methods/static/Base'),
     require('./methods/static/Customer')
