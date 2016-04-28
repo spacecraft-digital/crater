@@ -15,7 +15,10 @@ module.exports =
                 namespace: @namespace.name
             }
 
-    getName: -> "#{@host} repo"
+    getName: (forceNoun = false) ->
+        name = @host || ''
+        name += ' repo' if forceNoun
+        name
 
     # allow names to be aliased
     getNameRegexString: ->

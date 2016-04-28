@@ -2,6 +2,9 @@ regexEscape = require 'escape-string-regexp'
 
 module.exports =
     getName: (forceNoun = false) ->
+        unless @name
+            return if forceNoun then 'a stage' else ''
+
         switch @name.toLowerCase()
             when 'qa' then name = 'QA'
             when 'uat' then name = 'UAT'

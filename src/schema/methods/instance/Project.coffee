@@ -9,7 +9,10 @@ module.exports =
         if @name is 'default' and @defaultProject
             return 'main project'
         else if forceNoun
-            return "#{@name} project"
+            if @name
+                return "#{@name} project"
+            else
+                return 'exciting new project'
         else
             return @name
 
