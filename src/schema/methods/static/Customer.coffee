@@ -120,7 +120,7 @@ module.exports =
 
                 resolve names
 
-            .catch (error) -> console.log error.stack or error
+            .catch console.error.bind(console)
 
     # returns a Promise which resolves to a regular expression containing all customer names and aliases
     getAllNameRegexString: (forceReload) ->
