@@ -47,6 +47,9 @@ projectSchema.virtual('goLive', _jiri_aliasTarget: 'goLiveDate')
     .get -> @goLiveDate
     .set (value) -> @goLiveDate = value
 
+projectSchema.virtual('live')
+    .get -> @goLiveDate < Date.now()
+
 projectSchema.virtual('hostedAtJadu', _jiri_aliasTarget: 'hostedByJadu')
     .get -> @hostedByJadu
     .set (value) -> @hostedByJadu = value

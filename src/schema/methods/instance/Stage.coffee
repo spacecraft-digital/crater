@@ -25,7 +25,6 @@ module.exports =
         names = [regexEscape(@name)]
         switch @name.toLowerCase()
             when 'production'
-                names.push 'live'
                 names.push '(pre-?)?prod(uction)?'
             when 'qa'
                 names.push 'q[\.\-]?a\.?'
