@@ -20,6 +20,7 @@ projectSchema = mongoose.Schema {
     goLiveDate: Date
     slackChannel: String
     projectManager: type: String, crater: suggestions: true
+    supportedBrowsers: type: [String], crater: suggestions: true
 
     # exact IDs/names used in different data sources
     # These are used when re-importing data, to match to
