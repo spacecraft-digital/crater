@@ -45,19 +45,19 @@ module.exports =
     # Find where the full name exactly matches the query
     findByExactName: (name, property = 'name') ->
         o = {}
-        o[property] = new RegExp("^#{regexEscape(name)}$", 'i')
+        o[property] = new RegExp("^#{regexEscape(name||'')}$", 'i')
         @find(o).sort(name: 1)
 
     # Find where the name contains the query as a whole word
     findBySingleWord: (name, property = 'name') ->
         o = {}
-        o[property] = new RegExp("\\b#{regexEscape(name)}\\b", 'i')
+        o[property] = new RegExp("\\b#{regexEscape(name||'')}\\b", 'i')
         @find(o).sort(name: 1)
 
     # Find where the name contains the query as a whole
     findByPartialName: (name, property = 'name') ->
         o = {}
-        o[property] = new RegExp("#{regexEscape(name)}", 'i')
+        o[property] = new RegExp("#{regexEscape(name||'')}", 'i')
         @find(o).sort(name: 1)
 
     # Find where the name contains each of the words in the query, in any order
@@ -65,14 +65,14 @@ module.exports =
         o = $and: []
         for word in name.split ' '
             expression = {}
-            expression[property] = new RegExp("\\b#{regexEscape(word)}\\b", 'i')
+            expression[property] = new RegExp("\\b#{regexEscape(word||'')}\\b", 'i')
             o['$and'].push expression
         @find(o).sort(name: 1)
 
     # remove commonly ignored words like 'council' and 'borough'
     findBySimplifiedName: (name, property = 'name') ->
         o = {}
-        o[property] = new RegExp("#{regexEscape(simplifyName(name))}", 'i')
+        o[property] = new RegExp("#{regexEscape(simplifyName(name||''))}", 'i')
         @find(o).sort(name: 1)
 
 
