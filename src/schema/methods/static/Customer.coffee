@@ -22,7 +22,7 @@ module.exports =
     # Find by name, allowing a progressively looser match until at least one is found
     # Returns an array of Customer
     findByName: (name) ->
-        throw "Name is required" unless name
+        throw new Error "Name is required" unless name
 
         @findByExactName(name)
             .then (results) => if results.length then results else @findBySingleWord(name)
