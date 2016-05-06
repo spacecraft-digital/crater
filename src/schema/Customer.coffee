@@ -5,6 +5,7 @@ extend = require 'lodash.assignin'
 customerSchema = mongoose.Schema {
     # Full name of the Customer
     name: String
+    codename: String
     # Other names the customer may be known by
     aliases: [String]
     # A customer's site
