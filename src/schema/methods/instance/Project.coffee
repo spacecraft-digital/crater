@@ -16,6 +16,9 @@ module.exports =
         else
             return @name
 
+    getFullName: ->
+        "#{@parent().getName()} #{@getName(true)}"
+
     getStage: (stage) ->
         regex = new RegExp "^#{stage}$", "i"
         return s for s in @.stages when s.name.match regex
