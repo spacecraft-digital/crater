@@ -42,6 +42,8 @@ projectSchema.virtual('codename')
 .get -> @_codename || @name.toLowerCase().replace(/[^a-z0-9\-]+/ig, '-').replace(/^-|-$/g, '')
 .set (value) -> @_codename = value
 
+projectSchema.virtual('customer').get -> @parent()
+
 projectSchema.virtual('repos', _jiri_aliasTarget: 'repositories').get -> @repositories
 projectSchema.virtual('repository', _jiri_aliasTarget: 'repositories').get -> @getDefault 'repositories'
 projectSchema.virtual('repo', _jiri_aliasTarget: 'repositories').get -> @getDefault 'repositories'
