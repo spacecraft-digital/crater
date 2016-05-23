@@ -15,7 +15,6 @@ projectSchema = mongoose.Schema {
     repositories: [repositorySchema]
     stages: [stageSchema]
     notes: type: String, crater: multiLine: true
-    state: String # project, live, archived
     hostedByJadu: Boolean
     platform: type: String, crater: suggestions: true # LAMP, WISP, WINS
     goLiveDate: Date
