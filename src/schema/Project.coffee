@@ -74,7 +74,8 @@ projectSchema.virtual('pm', _jiri_aliasTarget: 'projectManager')
 
 # apply methods
 extend projectSchema.statics,
-    require('./methods/static/Base')
+    require('./methods/static/Base'),
+    require('./methods/static/Entity')
 extend projectSchema.methods,
     require('./methods/instance/Base'),
     require('./methods/instance/Project')

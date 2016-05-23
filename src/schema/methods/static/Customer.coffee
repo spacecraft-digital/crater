@@ -15,19 +15,12 @@ allNameRegexString = null
 
 module.exports =
     # Find by name, allowing a progressively looser match until at least one is found
-    # Returns a single Customer or NULL
-    findOneByName: (name) ->
-        @findByName(name).then (customers) -> if customers?.length then customers[0] else null
-
-    # Find by name, allowing a progressively looser match until at least one is found
     # Returns an array of Customer
     findByName: (name) ->
-        throw new Error "Name is required" unless name
-
         @findByExactName(name)
+            .then (results) => if results.length then results else @findByExactName(name, '_codename')
             .then (results) => if results.length then results else @findBySingleWord(name)
             .then (results) => if results.length then results else @findByPartialName(name)
-            .then (results) => if results.length then results else @findBySimplifiedName(name)
             .then (results) => if results.length then results else @findByExactName(name, 'aliases')
             .then (results) => if results.length then results else @findBySingleWord(name, 'aliases')
             .then (results) => if results.length then results else @findByPartialName(name, 'aliases')
@@ -39,42 +32,6 @@ module.exports =
                 simplifiedName = simplifyName name
                 if simplifiedName != name
                     return @findByName simplifiedName
-                else
-                    return
-
-    # Find where the full name exactly matches the query
-    findByExactName: (name, property = 'name') ->
-        o = {}
-        o[property] = new RegExp("^#{regexEscape(name||'')}$", 'i')
-        @find(o).sort(name: 1)
-
-    # Find where the name contains the query as a whole word
-    findBySingleWord: (name, property = 'name') ->
-        o = {}
-        o[property] = new RegExp("\\b#{regexEscape(name||'')}\\b", 'i')
-        @find(o).sort(name: 1)
-
-    # Find where the name contains the query as a whole
-    findByPartialName: (name, property = 'name') ->
-        o = {}
-        o[property] = new RegExp("#{regexEscape(name||'')}", 'i')
-        @find(o).sort(name: 1)
-
-    # Find where the name contains each of the words in the query, in any order
-    findByNameParts: (name, property = 'name') ->
-        o = $and: []
-        for word in name.split ' '
-            expression = {}
-            expression[property] = new RegExp("\\b#{regexEscape(word||'')}\\b", 'i')
-            o['$and'].push expression
-        @find(o).sort(name: 1)
-
-    # remove commonly ignored words like 'council' and 'borough'
-    findBySimplifiedName: (name, property = 'name') ->
-        o = {}
-        o[property] = new RegExp("#{regexEscape(simplifyName(name||''))}", 'i')
-        @find(o).sort(name: 1)
-
 
     # Finds a Customer by fuzzy matching its name and aliases
     # Returns the highest scoring Customer or null if not found

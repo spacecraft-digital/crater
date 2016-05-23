@@ -31,6 +31,7 @@ customerSchema.virtual('alias', _jiri_aliasTarget: 'aliases')
 # apply methods
 extend customerSchema.statics,
     require('./methods/static/Base'),
+    require('./methods/static/Entity'),
     require('./methods/static/Customer')
 extend customerSchema.methods,
     require('./methods/instance/Base'),
