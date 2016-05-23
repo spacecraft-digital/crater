@@ -5,7 +5,7 @@ extend = require 'lodash.assignin'
 customerSchema = mongoose.Schema {
     # Full name of the Customer
     name: String
-    codename: String
+    _codename: type: String, crater: virtual: 'codename'
     # Other names the customer may be known by
     aliases: [String]
     # A customer's site
@@ -19,6 +19,10 @@ customerSchema = mongoose.Schema {
 ################################################
 
 # Virtual properties
+customerSchema.virtual('codename')
+.get -> @_codename || @name.toLowerCase().replace(/[^a-z0-9\-]+/ig, '-').replace(/^-|-$/g, '')
+.set (value) -> @_codename = value
+
 customerSchema.virtual('project', _jiri_aliasTarget: 'projects')
     .get -> @getProject()
 customerSchema.virtual('alias', _jiri_aliasTarget: 'aliases')
