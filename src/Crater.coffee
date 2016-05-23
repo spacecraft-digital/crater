@@ -10,6 +10,9 @@ module.exports =
                 Server: require './schema/Server'
                 Module: require './schema/Module'
                 Repository: require './schema/Repository'
+
+                Car: require './schema/Car'
+                Person: require './schema/Person'
         @schemas
 
     getSchema: (name) ->
