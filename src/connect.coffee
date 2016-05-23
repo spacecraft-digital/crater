@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
 Promise = require 'bluebird'
+mongoose.Promise = Promise
 colors = require 'colors'
 Crater = require './Crater'
 
