@@ -4,16 +4,16 @@ Promise = require 'bluebird'
 fuzzy = require 'fuzzy'
 NaturalLanguageObjectReference = require '../../../NaturalLanguageObjectReference'
 
-simplifyName = (name) ->
-    name.replace /\b(council|city|town|university|college|london borough|borough|district|of|[^a-z]+)\b/gi, ''
-        .replace new RegExp(' {2,}'), ' '
-        .trim()
-
 # define variables in scope
 allNames = null
 allNameRegexString = null
 
 module.exports =
+    simplifyName: (name) ->
+        name.replace /\b(council|city|town|university|college|london borough|borough|district|of|and|[^a-z\- ]+)\b/gi, ''
+            .replace /[ ]{2,}/g, ' '
+            .trim()
+
     # Find by name, allowing a progressively looser match until at least one is found
     # Returns an array of Customer
     findByName: (name) ->
@@ -29,7 +29,7 @@ module.exports =
             .then (results) =>
                 return results if results.length
                 # simplify the input name and run it all again!
-                simplifiedName = simplifyName name
+                simplifiedName = @simplifyName name
                 if simplifiedName != name
                     return @findByName simplifiedName
 
@@ -68,7 +68,7 @@ module.exports =
                 for customer in customers
                     addUniqueName regexEscape(customer.name)
                     addUniqueName alias for alias in customer.aliases
-                    addUniqueName simplifyName(customer.name)
+                    addUniqueName Customer.simplifyName customer.name
 
                 # sort long -> short
                 names.sort (a, b) -> b.length - a.length
