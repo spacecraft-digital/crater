@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 projectSchema = require './Project'
 extend = require 'lodash.assignin'
+slug = require 'slug'
 
 customerSchema = mongoose.Schema {
     # Full name of the Customer
@@ -20,7 +21,7 @@ customerSchema = mongoose.Schema {
 
 # Virtual properties
 customerSchema.virtual('codename')
-.get -> @_codename || @name.toLowerCase().replace(/[^a-z0-9\-]+/ig, '-').replace(/^-|-$/g, '')
+.get -> @_codename || slug customerSchema.statics.simplifyName(@name).toLowerCase()
 .set (value) -> @_codename = value
 
 customerSchema.virtual('project', _jiri_aliasTarget: 'projects')
