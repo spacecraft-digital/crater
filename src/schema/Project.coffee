@@ -6,9 +6,6 @@ repositorySchema = require './Repository'
 stageSchema = require './Stage'
 
 projectSchema = mongoose.Schema {
-    _creator:
-        type: mongoose.Schema.Types.ObjectId
-        ref: customerSchema
     name: type: String, crater: suggestions: true
     _codename: type: String
     defaultProject: Boolean
