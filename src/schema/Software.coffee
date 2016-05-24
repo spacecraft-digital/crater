@@ -1,18 +1,18 @@
 mongoose = require 'mongoose'
 extend = require 'lodash.assignin'
 
-moduleSchema = mongoose.Schema {
+softwareSchema = mongoose.Schema {
     name: type: String, crater: suggestions: true
     version: String
     },
     # metadata for Crater
     crater:
-        name: 'Module'
+        name: 'Software'
 
 # apply methods
-extend moduleSchema.statics,
+extend softwareSchema.statics,
     require('./methods/static/Base')
-extend moduleSchema.methods,
+extend softwareSchema.methods,
     require('./methods/instance/Base')
 
-module.exports = moduleSchema
+module.exports = softwareSchema

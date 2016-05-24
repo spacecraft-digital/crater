@@ -8,7 +8,7 @@ module.exports =
                 Project: require './schema/Project'
                 Stage: require './schema/Stage'
                 Server: require './schema/Server'
-                Module: require './schema/Module'
+                Software: require './schema/Software'
                 Repository: require './schema/Repository'
 
                 Car: require './schema/Car'

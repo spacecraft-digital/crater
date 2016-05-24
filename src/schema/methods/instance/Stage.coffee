@@ -16,9 +16,9 @@ module.exports =
         regex = new RegExp "^#{role}$", "i"
         return s for s in @servers when s.role?.match regex
 
-    getModule: (name) ->
+    getSoftware: (name) ->
         regex = new RegExp "^#{name}$", "i"
-        return m for m in @modules when m.name?.match regex
+        return m for m in @software when m.name?.match regex
 
     # allow names to be aliased
     getNameRegexString: ->
