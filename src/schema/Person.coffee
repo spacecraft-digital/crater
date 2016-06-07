@@ -8,10 +8,10 @@ personSchema = mongoose.Schema {
     email: String
     cars: [carSchema]
     team: type: String, crater: suggestions: true
+    },
     # metadata for Crater
     crater:
         name: 'Person'
-}
 
 ################################################
 
