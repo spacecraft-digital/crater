@@ -11,6 +11,7 @@ personSchema = mongoose.Schema {
     # metadata for Crater
     crater:
         name: 'Person'
+}
 
 ################################################
 
