@@ -4,7 +4,7 @@ mongoose.Promise = Promise
 colors = require 'colors'
 Crater = require './Crater'
 
-module.exports = (url = 'mongodb://localhost/customers') ->
+module.exports = (url = 'mongodb://localhost/crater') ->
     return new Promise (resolve, reject) ->
         if mongoose.connection.readyState > 0
             return resolve mongoose.connection
