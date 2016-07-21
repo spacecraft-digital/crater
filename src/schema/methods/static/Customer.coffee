@@ -81,14 +81,13 @@ module.exports =
 
     # returns a Promise which resolves to a regular expression containing all customer names and aliases
     getAllNameRegexString: (forceReload) ->
-        new Promise (resolve, reject) =>
-            if not forceReload and allNameRegexString
-                return resolve allNameRegexString
+        if not forceReload and allNameRegexString
+            return Promise.resolve allNameRegexString
 
-            @getAllNames(forceReload).then (names) ->
-                console.log "Found #{names.length} customer names/aliases — storing regex" if '--debug' in process.argv
-                allNameRegexString = "[\"'“‘]?(#{names.join('|')})[\"'”’]?"
-                return allNameRegexString
+        @getAllNames(forceReload).then (names) ->
+            console.log "Found #{names.length} customer names/aliases — storing regex" if '--debug' in process.argv
+            allNameRegexString = "[\"'“‘]?(#{names.join('|')})[\"'”’]?"
+            return Promise.resolve allNameRegexString
 
     # given a natural(ish) language string referring to a piece of customer data,
     # returns a SubTargetMatch referencing the desired object
