@@ -18,6 +18,7 @@ module.exports = (url = 'mongodb://localhost/crater') ->
                 Crater.getModels()
                 # load the 'all name regex string' on connect
                 mongoose.connection.once 'open', (callback) -> Crater.getSchema('Customer').statics.getAllNameRegexString(true)
+                # mongoose.connection.once 'open', (callback) -> Crater.getSchema('People').statics.getAllNameRegexString(true)
 
             mongoose.connect(url).then -> resolve mongoose
 
