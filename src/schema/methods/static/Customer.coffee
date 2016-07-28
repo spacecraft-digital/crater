@@ -50,34 +50,32 @@ module.exports =
                 resolve bestMatch.original
 
     getAllNames: (forceReload) ->
-        new Promise (resolve, reject) ->
-            if not forceReload and allNames
-                return resolve allNames
+        if not forceReload and allNames
+            return Promise.resolve allNames
 
-            console.log 'Loading all Customer names…' if '--debug' in process.argv
+        console.log 'Loading all Customer names…' if '--debug' in process.argv
 
-            Customer = mongoose.model 'Customer'
-            Customer.find()
-            .then (customers) =>
+        Customer = mongoose.model 'Customer'
+        Customer.find()
+        .then (customers) =>
 
-                names = []
-                addUniqueName = (name) ->
-                    name = name.toLowerCase()
-                    names.push name if names.indexOf(name) is -1
+            names = []
+            addUniqueName = (name) ->
+                name = name.toLowerCase()
+                names.push name if names.indexOf(name) is -1
 
-                for customer in customers
-                    addUniqueName regexEscape(customer.name)
-                    addUniqueName alias for alias in customer.aliases
-                    addUniqueName Customer.simplifyName customer.name
+            for customer in customers
+                addUniqueName regexEscape(customer.name)
+                addUniqueName alias for alias in customer.aliases
+                addUniqueName Customer.simplifyName customer.name
 
-                # sort long -> short
-                names.sort (a, b) -> b.length - a.length
+            # sort long -> short
+            names.sort (a, b) -> b.length - a.length
 
-                allNames = names
+            allNames = names
+            Promise.resolve names
 
-                resolve names
-
-            .catch console.error.bind(console)
+        .catch console.error.bind(console)
 
     # returns a Promise which resolves to a regular expression containing all customer names and aliases
     getAllNameRegexString: (forceReload) ->
