@@ -1,6 +1,6 @@
 {
   "name": "crater",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "That Spacecraft formed a massive Crater, so now that's where we keep our data",
   "private": true,
   "main": "lib/connect.js",
