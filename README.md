@@ -1,6 +1,6 @@
 A [Mongoose](http://mongoosejs.com/) database of Spacecraft technical data: customers, projects, servers and the like.
 
-This package gives no user interface to the database. [Jiri](https://gitlab.hq.jadu.net/spacecraft/jiri) and [Crater UI](https://gitlab.hq.jadu.net/spacecraft/crater-ui) consume this package to provide such interfaces.
+This package gives no user interface to the database. [Jiri](https://github.com/spacecraft-digital/jiri) and [Crater UI](https://github.com/spacecraft-digital/crater-ui) consume this package to provide such interfaces.
 
 ## Usage
 
