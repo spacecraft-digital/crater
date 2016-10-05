@@ -11,7 +11,8 @@ customerSchema = mongoose.Schema {
     aliases: [String]
     # A customer's site
     projects: [projectSchema]
-    slackChannel: String
+    slackChannel: String,
+    jaduSupportEmail: [String]
     },
     # metadata for Crater
     crater:
