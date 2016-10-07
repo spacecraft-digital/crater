@@ -9,6 +9,7 @@ projectSchema = mongoose.Schema {
     name: type: String, crater: suggestions: true
     _codename: type: String
     defaultProject: Boolean
+    software: [String]
     repositories: [repositorySchema]
     stages: [stageSchema]
     notes: type: String, crater: multiLine: true
